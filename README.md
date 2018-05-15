@@ -1,5 +1,7 @@
 # Named enum for PHP 7.1 +
 
+[![Build Status](https://travis-ci.org/MesaVolt/NamedEnum.svg)](https://travis-ci.org/MesaVolt/NamedEnum)
+
 ## Usage
 
 Add the package to your project :
