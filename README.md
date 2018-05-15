@@ -1,6 +1,7 @@
 # Named enum for PHP 7.1 +
 
 [![Build Status](https://travis-ci.org/MesaVolt/NamedEnum.svg)](https://travis-ci.org/MesaVolt/NamedEnum)
+[![Coverage Status](https://coveralls.io/repos/github/MesaVolt/NamedEnum/badge.svg)](https://coveralls.io/github/MesaVolt/NamedEnum)
 
 ## Usage
 
