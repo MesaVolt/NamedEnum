@@ -1,0 +1,14 @@
+
+
+Code Coverage Report:     
+  2018-05-15 15:46:13     
+                          
+ Summary:                 
+  Classes: 100.00% (2/2)  
+  Methods: 100.00% (6/6)  
+  Lines:   100.00% (11/11)
+
+\Mesavolt\Enum::Mesavolt\Enum\NamedEnum
+  Methods: 100.00% ( 5/ 5)   Lines: 100.00% (  7/  7)
+\Mesavolt\Enum::Mesavolt\Enum\StrictNamedEnum
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  4/  4)
