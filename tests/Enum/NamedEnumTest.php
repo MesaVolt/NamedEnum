@@ -16,6 +16,18 @@ final class NamedEnumTest extends TestCase
         $this->assertEquals('NAME STRING', TestEnum::getName(TestEnum::VALUE_STRING));
     }
 
+    public function testCanGetNames(): void
+    {
+        $this->assertEquals(
+            [
+                TestEnum::VALUE_1 => 'NAME 1',
+                TestEnum::VALUE_2 => 'NAME 2',
+                TestEnum::VALUE_STRING => 'NAME STRING'
+            ],
+            TestEnum::getNames()
+        );
+    }
+
     public function testCanGetAllNames(): void
     {
         $names = ['NAME 1', 'NAME 2', 'NAME STRING'];

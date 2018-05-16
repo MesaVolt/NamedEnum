@@ -15,9 +15,14 @@ abstract class NamedEnum
         return $itemClass->getConstants();
     }
 
+    public static function getNames(): array
+    {
+        return static::$VALUE_NAMES;
+    }
+
     public static function getName($value): ?string
     {
-        return array_key_exists($value, static::$VALUE_NAMES) ? static::$VALUE_NAMES[$value] : null;
+        return static::$VALUE_NAMES[$value] ?? null;
     }
 
     public static function values(): array

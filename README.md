@@ -56,6 +56,8 @@ $object->foo = MyEnum::BAR;
 echo MyEnum::getName($object->foo); // Bar name
 ```
 
+Check [NamedEnum's public methods](src/Enum/NamedEnum.php) for more usages examples.
+
 ## Testing
 
 ```bash
