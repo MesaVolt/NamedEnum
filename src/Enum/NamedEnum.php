@@ -39,4 +39,14 @@ abstract class NamedEnum
     {
         return array_flip(static::$VALUE_NAMES);
     }
+
+    public static function arrays(): array
+    {
+        $array = [];
+        foreach(static::$VALUE_NAMES as $value => $name) {
+            $array[] = ['name' => $name, 'value' => $value];
+        }
+
+        return $array;
+    }
 }

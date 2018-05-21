@@ -80,4 +80,15 @@ final class NamedEnumTest extends TestCase
     {
         $this->assertNull(TestEnum::getName(-1));
     }
+
+    public function testCanGetArrays()
+    {
+        $arrays = [
+            ['name' => 'NAME 1', 'value' => 1],
+            ['name' => 'NAME 2', 'value' => 2],
+            ['name' => 'NAME STRING', 'value' => 'string'],
+        ];
+
+        $this->assertEquals(TestEnum::arrays(), $arrays);
+    }
 }
