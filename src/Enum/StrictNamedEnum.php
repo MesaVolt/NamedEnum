@@ -12,6 +12,6 @@ abstract class StrictNamedEnum extends NamedEnum
             throw new \InvalidArgumentException("Undefined value \"$value\" for enum $class");
         }
 
-        return static::$VALUE_NAMES[$value];
+        return parent::getName($value);
     }
 }
