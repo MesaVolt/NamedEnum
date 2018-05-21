@@ -1,7 +1,9 @@
 # Named enum for PHP 7.1 +
 
+[![Latest Stable Version](https://poser.pugx.org/mesavolt/named-enum/v/stable)](https://packagist.org/packages/mesavolt/named-enum)
 [![Build Status](https://travis-ci.org/MesaVolt/NamedEnum.svg)](https://travis-ci.org/MesaVolt/NamedEnum)
 [![Coverage Status](https://coveralls.io/repos/github/MesaVolt/NamedEnum/badge.svg)](https://coveralls.io/github/MesaVolt/NamedEnum)
+[![License](https://poser.pugx.org/mesavolt/named-enum/license)](https://packagist.org/packages/mesavolt/named-enum)
 
 ## Usage
 
