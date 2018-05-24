@@ -60,6 +60,71 @@ echo MyEnum::getName($object->foo); // Bar name
 
 Check [NamedEnum's public methods](src/Enum/NamedEnum.php) for more usages examples.
 
+
+## Integration
+
+### Symfony >=3 with Twig >1.26
+
+If you use the default
+[auto-configuring feature of Symfony introduced in Symfony 3.3](https://symfony.com/doc/current/service_container/3.3-di-changes.html),
+you only need to register the `Mesavolt\Twig\NamedEnumExtension` as a service in your `services.yml` file.
+Symfony will tag it properly to register it in the twig environment used by your app.
+
+If you don't use the auto-configuring feature or if it's not available in your version,
+you need to apply the tags manually when you register the extension as a service.
+
+```yaml
+# Symfony 3: app/config/services.yml
+# Symfony 4: config/services.yaml
+services:
+
+    # Use this if you use the default auto-configuring feature of Symfony >=3.3  DI container
+    Mesavolt\Twig\NamedEnumExtension: ~
+
+    # Use this if you **don't** use the auto-configuring feature of Symfony >=3.3 DI container
+    app.named_enum_extension:
+        class: Mesavolt\Twig\NamedEnumExtension
+        tags: { name: twig.extension }
+```
+
+Then, you can use the `enum_name` filter and the `enum_name` function provided by the extension, in your templates :
+
+```php
+<?php
+// src/Controller/HomeController.php
+// This is an example for Symfony 4.
+// The code is exactly the same for Symfony 3, only the file locations change.
+namespace App\Controller;
+
+
+use App\Enum;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class HomeController extends Controller
+{
+    public function index()
+    {
+        return $this->render('my-template.html.twig', [
+            'value1' => Enum::FOO,
+            'value2' => Enum::BAR
+        ]);
+    }
+}
+```
+
+```twig
+{# templates/my-template.html.twig #}
+
+You selected "{{ value1|enum_name('\\App\\MyEnum') }}"
+{# You selected "Foo name" #}
+
+
+You selected {"{ enum_name(value2, '\\App\\MyEnum') }}"
+{# You selected "Bar name" #}
+
+```
+
+
 ## Testing
 
 ```bash
