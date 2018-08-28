@@ -3,6 +3,8 @@
 namespace Mesavolt\Enum;
 
 
+use Mesavolt\Helper\VariableDumper;
+
 /**
  * Extend this class and implement a static $VALUE_NAMES property
  * to benefit from all the methods defined here.
@@ -74,5 +76,35 @@ abstract class NamedEnum
         }
 
         return $array;
+    }
+
+    /**
+     * Returns true if the specified value is declared as one of this enum values.
+     */
+    public static function isValid($value, bool $nullable = false, bool $strictCheck = true): bool
+    {
+        // Null and nullable is allowed
+        if ($nullable && $value === null) {
+            return true;
+        }
+
+        return \in_array($value, self::values(), $strictCheck);
+    }
+
+    /**
+     * Throws an exception if the specified value is not declared as one of this enum values.
+     */
+    public static function ensureValid($value, string $callerMethod, bool $nullable = false, bool $strictCheck = true): void
+    {
+        if (!self::isValid($value, $nullable, $strictCheck)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Invalid argument provided to %s - expected one of "%s", got "%s"',
+                    $callerMethod,
+                    implode(', ', self::values()),
+                    VariableDumper::dump($value)
+                )
+            );
+        }
     }
 }
