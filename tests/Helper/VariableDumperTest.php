@@ -24,6 +24,8 @@ class VariableDumperTest extends TestCase
             // object
             [new \stdClass(), 'stdClass'],
             [new \Exception(), \Exception::class],
+            // resouruce
+            [fopen(__FILE__, 'r'), 'resource']
         ];
     }
 

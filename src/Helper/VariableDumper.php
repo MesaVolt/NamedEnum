@@ -15,13 +15,12 @@ abstract class VariableDumper
                 return json_encode($variable);
             case 'string':
                 return mb_substr($variable, 0, 100);
-            case 'array':
-            case 'resource':
-                return $type;
             case 'object':
                 return \get_class($variable);
+            case 'array':
+            case 'resource':
             default:
-                return 'unknown';
+                return $type;
         }
     }
 }
