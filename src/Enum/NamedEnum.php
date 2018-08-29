@@ -88,7 +88,7 @@ abstract class NamedEnum
             return true;
         }
 
-        return \in_array($value, self::values(), $strictCheck);
+        return \in_array($value, self::constants(), $strictCheck);
     }
 
     /**
@@ -101,7 +101,7 @@ abstract class NamedEnum
                 sprintf(
                     'Invalid argument provided to %s - expected one of "%s", got "%s"',
                     $callerMethod,
-                    implode(', ', self::values()),
+                    implode(', ', self::constants()),
                     VariableDumper::dump($value)
                 )
             );
