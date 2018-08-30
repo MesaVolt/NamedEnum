@@ -95,9 +95,9 @@ final class NamedEnumTest extends TestCase
     public function testEnsureValid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid argument provided to Mesavolt\Tests\Enum\NamedEnumTest::testEnsureValid - expected one of "1, 2, string", got "banana"');
+        $this->expectExceptionMessage('Invalid argument provided to Mesavolt\Tests\Enum\NamedEnumTest->testEnsureValid - expected one of "1, 2, string", got "banana"');
 
-        TestEnum::ensureValid('banana', __METHOD__);
+        TestEnum::ensureValid('banana');
     }
 
     public function dataProvider_ensureValidExceptionMessage(): array
@@ -116,45 +116,35 @@ final class NamedEnumTest extends TestCase
     public function testEnsureValidExceptionMessage($value, string $expectedStringRepresentation): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid argument provided to Mesavolt\Tests\Enum\NamedEnumTest::testEnsureValidExceptionMessage - expected one of "1, 2, string", got "'.$expectedStringRepresentation.'"');
-        TestEnum::ensureValid($value, __METHOD__);
-    }
-
-    /**
-     * @dataProvider dataProvider_ensureValidExceptionMessage
-     */
-    public function testEnsureValidExceptionMessageWithoutCallerMethodArgument($value, string $expectedStringRepresentation): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid argument provided to Mesavolt\Tests\Enum\NamedEnumTest->testEnsureValidExceptionMessageWithoutCallerMethodArgument - expected one of "1, 2, string", got "'.$expectedStringRepresentation.'"');
+        $this->expectExceptionMessage('Invalid argument provided to Mesavolt\Tests\Enum\NamedEnumTest->testEnsureValidExceptionMessage - expected one of "1, 2, string", got "'.$expectedStringRepresentation.'"');
         TestEnum::ensureValid($value);
     }
 
     public function testEnsureValidWithNonNullable(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid argument provided to Mesavolt\Tests\Enum\NamedEnumTest::testEnsureValidWithNonNullable - expected one of "1, 2, string", got "null"');
+        $this->expectExceptionMessage('Invalid argument provided to Mesavolt\Tests\Enum\NamedEnumTest->testEnsureValidWithNonNullable - expected one of "1, 2, string", got "null"');
 
-        TestEnum::ensureValid(null, __METHOD__);
+        TestEnum::ensureValid(null, false);
     }
 
     public function testEnsureValidWithNullable(): void
     {
-        TestEnum::ensureValid(null, __METHOD__, true);
+        TestEnum::ensureValid(null, true);
         $this->assertTrue(true);
     }
 
     public function testEnsureValidWithStrictCheck(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid argument provided to Mesavolt\Tests\Enum\NamedEnumTest::testEnsureValidWithStrictCheck - expected one of "1, 2, string", got "1"');
+        $this->expectExceptionMessage('Invalid argument provided to Mesavolt\Tests\Enum\NamedEnumTest->testEnsureValidWithStrictCheck - expected one of "1, 2, string", got "1"');
 
-        TestEnum::ensureValid('1', __METHOD__, false, true);
+        TestEnum::ensureValid('1', false, true);
     }
 
     public function testEnsureValidWithNonStrictCheck(): void
     {
-        TestEnum::ensureValid('1', __METHOD__, false, false);
+        TestEnum::ensureValid('1', false, false);
         $this->assertTrue(true);
     }
 }
