@@ -94,9 +94,14 @@ abstract class NamedEnum
     /**
      * Throws an exception if the specified value is not declared as one of this enum values.
      */
-    public static function ensureValid($value, string $callerMethod, bool $nullable = false, bool $strictCheck = true): void
+    public static function ensureValid($value, string $callerMethod = null, bool $nullable = false, bool $strictCheck = true): void
     {
         if (!self::isValid($value, $nullable, $strictCheck)) {
+            if ($callerMethod === null) {
+                $callerContext = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1];
+                $callerMethod = $callerContext['class'].$callerContext['type'].$callerContext['function'];
+            }
+
             throw new \InvalidArgumentException(
                 sprintf(
                     'Invalid argument provided to %s - expected one of "%s", got "%s"',

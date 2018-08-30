@@ -120,6 +120,16 @@ final class NamedEnumTest extends TestCase
         TestEnum::ensureValid($value, __METHOD__);
     }
 
+    /**
+     * @dataProvider dataProvider_ensureValidExceptionMessage
+     */
+    public function testEnsureValidExceptionMessageWithoutCallerMethodArgument($value, string $expectedStringRepresentation): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid argument provided to Mesavolt\Tests\Enum\NamedEnumTest->testEnsureValidExceptionMessageWithoutCallerMethodArgument - expected one of "1, 2, string", got "'.$expectedStringRepresentation.'"');
+        TestEnum::ensureValid($value);
+    }
+
     public function testEnsureValidWithNonNullable(): void
     {
         $this->expectException(\InvalidArgumentException::class);
