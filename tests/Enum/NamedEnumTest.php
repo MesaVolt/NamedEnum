@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Mesavolt\Tests\Enum;
 
 
+use Mesavolt\Tests\Fixture\IncompleteNamedEnum;
 use PHPUnit\Framework\TestCase;
 use Mesavolt\Tests\Fixture\TestEnum;
 
@@ -146,5 +147,11 @@ final class NamedEnumTest extends TestCase
     {
         TestEnum::ensureValid('1', false, false);
         $this->assertTrue(true);
+    }
+
+    public function testGettingValuesDoesntRequireName()
+    {
+        $values = IncompleteNamedEnum::values();
+        $this->assertCount(3, $values);
     }
 }
