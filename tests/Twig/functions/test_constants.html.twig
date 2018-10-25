@@ -1,0 +1,3 @@
+{%- for name, value in enum_constants(class) -%}
+    {{- name }}:{{ value -}}|
+{%- endfor -%}

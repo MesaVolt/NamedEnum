@@ -1,0 +1,3 @@
+{%- for array in class|enum_arrays -%}
+    [{{- array.name }} => {{ array.value -}}]
+{%- endfor -%}
