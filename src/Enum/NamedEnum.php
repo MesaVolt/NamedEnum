@@ -58,7 +58,7 @@ abstract class NamedEnum
 
     /**
      * Get an array of all the values indexed by name
-     * (especially useful tu use in a ChoiceType field in a Symfony Form).
+     * (especially useful to use in a ChoiceType field in a Symfony Form).
      */
     public static function choices(): array
     {
