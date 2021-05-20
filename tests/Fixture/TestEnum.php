@@ -16,4 +16,10 @@ abstract class TestEnum extends NamedEnum
         self::VALUE_2 => 'NAME 2',
         self::VALUE_STRING => 'NAME STRING'
     ];
+
+    public static $ALTERNATIVE_NAMES = [
+        self::VALUE_1 => 'ALTERNATIVE NAME 1',
+        self::VALUE_2 => 'ALTERNATIVE NAME 2',
+        self::VALUE_STRING => 'ALTERNATIVE NAME STRING',
+    ];
 }

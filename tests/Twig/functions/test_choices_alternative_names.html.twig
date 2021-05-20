@@ -1,0 +1,3 @@
+{%- for label, value in enum_choices(class, alternative_names) -%}
+    {{- label }}:{{ value -}}|
+{%- endfor -%}

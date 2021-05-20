@@ -8,7 +8,6 @@ abstract class VariableDumper
     {
         switch ($type = \gettype($variable)) {
             case 'NULL':
-                return 'null';
             case 'boolean':
             case 'integer':
             case 'double':

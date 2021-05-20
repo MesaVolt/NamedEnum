@@ -33,9 +33,9 @@ class NamedEnumExtension extends AbstractExtension
         ];
     }
 
-    public function enumName($value, $class)
+    public function enumName($value, $class, array $alternativeNames = null)
     {
-        return $class::getName($value);
+        return $class::getName($value, $alternativeNames);
     }
 
     public function enumValues($class)
@@ -43,9 +43,9 @@ class NamedEnumExtension extends AbstractExtension
         return $class::values();
     }
 
-    public function enumNames($class)
+    public function enumNames($class, array $alternativeNames = null)
     {
-        return $class::names();
+        return $class::names($alternativeNames);
     }
 
     public function enumConstants($class)
@@ -53,13 +53,13 @@ class NamedEnumExtension extends AbstractExtension
         return $class::constants();
     }
 
-    public function enumArrays($class)
+    public function enumArrays($class, array $alternativeNames = null)
     {
-        return $class::arrays();
+        return $class::arrays($alternativeNames);
     }
 
-    public function enumChoices($class)
+    public function enumChoices($class, array $alternativeNames = null)
     {
-        return $class::choices();
+        return $class::choices($alternativeNames);
     }
 }
