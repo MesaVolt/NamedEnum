@@ -9,12 +9,12 @@ use PHPUnit\Framework\TestCase;
 
 class StrictNamedEnumTest extends TestCase
 {
-    public function testCanGetNameFromValue()
+    public function testCanGetNameFromValue(): void
     {
-        $this->assertEquals('FOO NAME', StrictTestEnum::getName(StrictTestEnum::FOO));
+        self::assertEquals('FOO NAME', StrictTestEnum::getName(StrictTestEnum::FOO));
     }
 
-    public function testThrowsExeptionForNonExistingValue()
+    public function testThrowsExeptionForNonExistingValue(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Undefined value "foo" for enum Mesavolt\Tests\Fixture\StrictTestEnum');

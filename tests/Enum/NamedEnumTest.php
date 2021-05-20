@@ -12,14 +12,14 @@ final class NamedEnumTest extends TestCase
 {
     public function testCanGetNameFromValue(): void
     {
-        $this->assertEquals('NAME 1', TestEnum::getName(TestEnum::VALUE_1));
-        $this->assertEquals('NAME 2', TestEnum::getName(TestEnum::VALUE_2));
-        $this->assertEquals('NAME STRING', TestEnum::getName(TestEnum::VALUE_STRING));
+        self::assertEquals('NAME 1', TestEnum::getName(TestEnum::VALUE_1));
+        self::assertEquals('NAME 2', TestEnum::getName(TestEnum::VALUE_2));
+        self::assertEquals('NAME STRING', TestEnum::getName(TestEnum::VALUE_STRING));
     }
 
     public function testCanGetNames(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             [
                 TestEnum::VALUE_1 => 'NAME 1',
                 TestEnum::VALUE_2 => 'NAME 2',
@@ -32,20 +32,20 @@ final class NamedEnumTest extends TestCase
     public function testCanGetAllNames(): void
     {
         $names = ['NAME 1', 'NAME 2', 'NAME STRING'];
-        $this->assertSameSize($names, TestEnum::names());
+        self::assertSameSize($names, TestEnum::names());
 
         foreach($names as $name) {
-            $this->assertContains($name, TestEnum::names());
+            self::assertContains($name, TestEnum::names());
         }
     }
 
     public function testCanGetAllValues(): void
     {
         $values = [1, 2, 'string'];
-        $this->assertSameSize($values, TestEnum::values());
+        self::assertSameSize($values, TestEnum::values());
 
         foreach($values as $value) {
-            $this->assertContains($value, TestEnum::values());
+            self::assertContains($value, TestEnum::values());
         }
     }
 
@@ -56,10 +56,10 @@ final class NamedEnumTest extends TestCase
             'NAME 2' => 2,
             'NAME STRING' => 'string'
         ];
-        $this->assertSameSize($choices, TestEnum::choices());
+        self::assertSameSize($choices, TestEnum::choices());
 
         foreach($choices as $name => $value) {
-            $this->assertEquals($name, TestEnum::getName($value));
+            self::assertEquals($name, TestEnum::getName($value));
         }
     }
 
@@ -70,16 +70,16 @@ final class NamedEnumTest extends TestCase
             'VALUE_2' => 2,
             'VALUE_STRING' => 'string'
         ];
-        $this->assertSameSize($constants, TestEnum::constants());
+        self::assertSameSize($constants, TestEnum::constants());
 
         foreach($constants as $constName => $value) {
-            $this->assertEquals($value, TestEnum::constants()[$constName]);
+            self::assertEquals($value, TestEnum::constants()[$constName]);
         }
     }
 
     public function testReturnNullForNonExistingValue(): void
     {
-        $this->assertNull(TestEnum::getName(-1));
+        self::assertNull(TestEnum::getName(-1));
     }
 
     public function testCanGetArrays(): void
@@ -90,7 +90,7 @@ final class NamedEnumTest extends TestCase
             ['name' => 'NAME STRING', 'value' => 'string'],
         ];
 
-        $this->assertEquals(TestEnum::arrays(), $arrays);
+        self::assertEquals(TestEnum::arrays(), $arrays);
     }
 
     public function testEnsureValid(): void
@@ -132,7 +132,7 @@ final class NamedEnumTest extends TestCase
     public function testEnsureValidWithNullable(): void
     {
         TestEnum::ensureValid(null, true);
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testEnsureValidWithStrictCheck(): void
@@ -146,12 +146,12 @@ final class NamedEnumTest extends TestCase
     public function testEnsureValidWithNonStrictCheck(): void
     {
         TestEnum::ensureValid('1', false, false);
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
-    public function testGettingValuesDoesntRequireName()
+    public function testGettingValuesDoesntRequireName(): void
     {
         $values = IncompleteNamedEnum::values();
-        $this->assertCount(3, $values);
+        self::assertCount(3, $values);
     }
 }

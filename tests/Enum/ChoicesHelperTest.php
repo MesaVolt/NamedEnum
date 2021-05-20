@@ -9,36 +9,36 @@ use PHPUnit\Framework\TestCase;
 
 class ChoicesHelperTest extends TestCase
 {
-    public function testExcept()
+    public function testExcept(): void
     {
         $choices = TestEnum::choices();
         $only = ChoicesHelper::except([TestEnum::VALUE_2], $choices);
 
-        $this->assertCount(2, $only);
+        self::assertCount(2, $only);
 
-        $this->assertContains(TestEnum::VALUE_1, $only);
-        $this->assertContains(TestEnum::VALUE_STRING, $only);
+        self::assertContains(TestEnum::VALUE_1, $only);
+        self::assertContains(TestEnum::VALUE_STRING, $only);
 
-        $this->assertArrayHasKey(TestEnum::getName(TestEnum::VALUE_1), $only);
-        $this->assertArrayHasKey(TestEnum::getName(TestEnum::VALUE_STRING), $only);
+        self::assertArrayHasKey(TestEnum::getName(TestEnum::VALUE_1), $only);
+        self::assertArrayHasKey(TestEnum::getName(TestEnum::VALUE_STRING), $only);
 
         $only = ChoicesHelper::except([], $choices);
-        $this->assertEquals($choices, $only);
+        self::assertEquals($choices, $only);
     }
 
-    public function testOnly()
+    public function testOnly(): void
     {
         $choices = TestEnum::choices();
         $only = ChoicesHelper::only([TestEnum::VALUE_1, TestEnum::VALUE_STRING], $choices);
 
-        $this->assertCount(2, $only);
+        self::assertCount(2, $only);
 
-        $this->assertContains(TestEnum::VALUE_1, $only);
-        $this->assertContains(TestEnum::VALUE_STRING, $only);
+        self::assertContains(TestEnum::VALUE_1, $only);
+        self::assertContains(TestEnum::VALUE_STRING, $only);
 
-        $this->assertArrayHasKey(TestEnum::getName(TestEnum::VALUE_1), $only);
-        $this->assertArrayHasKey(TestEnum::getName(TestEnum::VALUE_STRING), $only);
+        self::assertArrayHasKey(TestEnum::getName(TestEnum::VALUE_1), $only);
+        self::assertArrayHasKey(TestEnum::getName(TestEnum::VALUE_STRING), $only);
 
         $only = ChoicesHelper::only([], $choices);
-        $this->assertEquals([], $only);}
+        self::assertEquals([], $only);}
 }

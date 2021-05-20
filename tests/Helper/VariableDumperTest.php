@@ -25,7 +25,7 @@ class VariableDumperTest extends TestCase
             [new \stdClass(), 'stdClass'],
             [new \Exception(), \Exception::class],
             // resouruce
-            [fopen(__FILE__, 'r'), 'resource']
+            [fopen(__FILE__, 'rb'), 'resource']
         ];
     }
 
@@ -34,7 +34,7 @@ class VariableDumperTest extends TestCase
      */
     public function test_dump($input, $expectedOutput): void
     {
-        $this->assertSame(
+        self::assertSame(
             $expectedOutput,
             VariableDumper::dump($input)
         );
