@@ -45,7 +45,7 @@ abstract class NamedEnum
      */
     public static function values(): array
     {
-        return array_values(static::constants());
+        return array_values(self::constants());
     }
 
     /**
