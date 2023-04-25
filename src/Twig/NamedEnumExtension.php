@@ -9,7 +9,7 @@ use Twig\TwigFunction;
 
 class NamedEnumExtension extends AbstractExtension
 {
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('enum_arrays', [$this, 'enumArrays']),
@@ -21,7 +21,7 @@ class NamedEnumExtension extends AbstractExtension
         ];
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('enum_arrays', [$this, 'enumArrays']),
@@ -33,32 +33,32 @@ class NamedEnumExtension extends AbstractExtension
         ];
     }
 
-    public function enumName($value, $class, array $alternativeNames = null)
+    public function enumName($value, $class, array $alternativeNames = null): ?string
     {
         return $class::getName($value, $alternativeNames);
     }
 
-    public function enumValues($class)
+    public function enumValues($class): array
     {
         return $class::values();
     }
 
-    public function enumNames($class, array $alternativeNames = null)
+    public function enumNames($class, array $alternativeNames = null): array
     {
         return $class::names($alternativeNames);
     }
 
-    public function enumConstants($class)
+    public function enumConstants($class): array
     {
         return $class::constants();
     }
 
-    public function enumArrays($class, array $alternativeNames = null)
+    public function enumArrays($class, array $alternativeNames = null): array
     {
         return $class::arrays($alternativeNames);
     }
 
-    public function enumChoices($class, array $alternativeNames = null)
+    public function enumChoices($class, array $alternativeNames = null): array
     {
         return $class::choices($alternativeNames);
     }
