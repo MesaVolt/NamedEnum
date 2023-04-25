@@ -28,7 +28,7 @@
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.0",
-        "phpunit/phpunit": "^7",
-        "twig/twig": "^2.4"
+        "phpunit/phpunit": "^9",
+        "twig/twig": "^3.0"
     }
 }
