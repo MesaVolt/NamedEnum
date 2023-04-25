@@ -1,0 +1,10 @@
+# Exclude non-essential files from dist
+
+/tests export-ignore
+phpunit.xml* export-ignore
+.env export-ignore
+.env.* export-ignore
+/bin export-ignore
+/templates export-ignore
+/.github export-ignore
+/.coveralls.yml
