@@ -27,7 +27,7 @@ abstract class NamedEnum
     /**
      * Get all the names, indexed by their value.
      */
-    public static function getNames(array $alternativeNames = null): array
+    public static function getNames(?array $alternativeNames = null): array
     {
         return $alternativeNames ?: static::$VALUE_NAMES;
     }
@@ -35,7 +35,7 @@ abstract class NamedEnum
     /**
      * Get the name of a value, or null if the value doesn't exist.
      */
-    public static function getName($value, array $alternativeNames = null): ?string
+    public static function getName($value, ?array $alternativeNames = null): ?string
     {
         return ($alternativeNames ?: static::$VALUE_NAMES)[$value] ?? null;
     }
@@ -51,7 +51,7 @@ abstract class NamedEnum
     /**
      * Get an array of all the names.
      */
-    public static function names(array $alternativeNames = null): array
+    public static function names(?array $alternativeNames = null): array
     {
         return array_values($alternativeNames ?: static::$VALUE_NAMES);
     }
@@ -60,7 +60,7 @@ abstract class NamedEnum
      * Get an array of all the values indexed by name
      * (especially useful to use in a ChoiceType field in a Symfony Form).
      */
-    public static function choices(array $alternativeNames = null): array
+    public static function choices(?array $alternativeNames = null): array
     {
         return array_flip($alternativeNames ?: static::$VALUE_NAMES);
     }
@@ -68,7 +68,7 @@ abstract class NamedEnum
     /**
      * Get all the values as an array of associative arrays of the form ['name' => NAME, 'value' => VALUE].
      */
-    public static function arrays(array $alternativeNames = null): array
+    public static function arrays(?array $alternativeNames = null): array
     {
         $array = [];
         foreach(($alternativeNames ?: static::$VALUE_NAMES) as $value => $name) {
