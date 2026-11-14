@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mesavolt\Tests\Twig;
 
 
@@ -7,54 +9,18 @@ use Mesavolt\Tests\Fixture\TestEnum;
 use Mesavolt\Twig\NamedEnumExtension;
 use PHPUnit\Framework\TestCase;
 use Twig\Environment;
+use Twig\Extension\AttributeExtension;
 use Twig\Loader\FilesystemLoader;
 
 class NamedEnumExtensionAlternativeNamesTest extends TestCase
 {
-    /** @var Environment */
-    protected $twig;
-    /** @var NamedEnumExtension */
-    protected $extension;
+    protected Environment $twig;
+
 
     protected function setUp(): void
     {
-        $this->extension = new NamedEnumExtension();
-
         $this->twig = new Environment(new FilesystemLoader(__DIR__));
-        $this->twig->addExtension($this->extension);
-    }
-
-    protected function tearDown(): void
-    {
-        $this->twig = null;
-        $this->extension = null;
-    }
-
-    public function testFilters(): void
-    {
-        $extension = $this->twig->getExtension(NamedEnumExtension::class);
-        $filters = $extension->getFilters();
-
-        self::assertCount(6, $filters);
-        self::assertEquals('enum_arrays', $filters[0]->getName());
-        self::assertEquals('enum_choices', $filters[1]->getName());
-        self::assertEquals('enum_constants', $filters[2]->getName());
-        self::assertEquals('enum_name', $filters[3]->getName());
-        self::assertEquals('enum_names', $filters[4]->getName());
-        self::assertEquals('enum_values', $filters[5]->getName());
-    }
-
-    public function testFunctions(): void
-    {
-        $functions = $this->extension->getFunctions();
-
-        self::assertCount(6, $functions);
-        self::assertEquals('enum_arrays', $functions[0]->getName());
-        self::assertEquals('enum_choices', $functions[1]->getName());
-        self::assertEquals('enum_constants', $functions[2]->getName());
-        self::assertEquals('enum_name', $functions[3]->getName());
-        self::assertEquals('enum_names', $functions[4]->getName());
-        self::assertEquals('enum_values', $functions[5]->getName());
+        $this->twig->addExtension(new AttributeExtension(NamedEnumExtension::class));
     }
 
     public function testCanUseFilters(): void

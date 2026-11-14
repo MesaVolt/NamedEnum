@@ -7,27 +7,28 @@ use Mesavolt\Tests\Fixture\TestEnum;
 use Mesavolt\Twig\NamedEnumExtension;
 use PHPUnit\Framework\TestCase;
 use Twig\Environment;
+use Twig\Extension\AttributeExtension;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class NamedEnumExtensionTest extends TestCase
 {
-    /** @var Environment */
-    protected $twig;
-    /** @var NamedEnumExtension */
-    protected $extension;
+    protected Environment $twig;
+
+    protected const array UTILS = [
+        'enum_arrays',
+        'enum_choices',
+        'enum_constants',
+        'enum_name',
+        'enum_names',
+        'enum_values',
+    ];
 
     protected function setUp(): void
     {
-        $this->extension = new NamedEnumExtension();
-
         $this->twig = new Environment(new FilesystemLoader(__DIR__));
-        $this->twig->addExtension($this->extension);
-    }
-
-    protected function tearDown(): void
-    {
-        $this->twig = null;
-        $this->extension = null;
+        $this->twig->addExtension(new AttributeExtension(NamedEnumExtension::class));
     }
 
     public function testFilters(): void
@@ -35,26 +36,17 @@ class NamedEnumExtensionTest extends TestCase
         $extension = $this->twig->getExtension(NamedEnumExtension::class);
         $filters = $extension->getFilters();
 
-        self::assertCount(6, $filters);
-        self::assertEquals('enum_arrays', $filters[0]->getName());
-        self::assertEquals('enum_choices', $filters[1]->getName());
-        self::assertEquals('enum_constants', $filters[2]->getName());
-        self::assertEquals('enum_name', $filters[3]->getName());
-        self::assertEquals('enum_names', $filters[4]->getName());
-        self::assertEquals('enum_values', $filters[5]->getName());
+        $filterNames = array_map(static fn(TwigFilter $filter): string => $filter->getName(), $filters);
+        self::assertArraysHaveEqualValuesIgnoringOrder(self::UTILS, $filterNames);
     }
 
     public function testFunctions(): void
     {
-        $functions = $this->extension->getFunctions();
+        $extension = $this->twig->getExtension(NamedEnumExtension::class);
+        $functions = $extension->getFunctions();
 
-        self::assertCount(6, $functions);
-        self::assertEquals('enum_arrays', $functions[0]->getName());
-        self::assertEquals('enum_choices', $functions[1]->getName());
-        self::assertEquals('enum_constants', $functions[2]->getName());
-        self::assertEquals('enum_name', $functions[3]->getName());
-        self::assertEquals('enum_names', $functions[4]->getName());
-        self::assertEquals('enum_values', $functions[5]->getName());
+        $filterNames = array_map(static fn(TwigFunction $function): string => $function->getName(), $functions);
+        self::assertArraysHaveEqualValuesIgnoringOrder(self::UTILS, $filterNames);
     }
 
     public function testCanUseFilters(): void

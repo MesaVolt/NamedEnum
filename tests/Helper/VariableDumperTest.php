@@ -2,12 +2,13 @@
 
 namespace Mesavolt\Tests\Helper;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Mesavolt\Helper\VariableDumper;
 use PHPUnit\Framework\TestCase;
 
 class VariableDumperTest extends TestCase
 {
-    public function dataProvider_dump(): array
+    public static function dataProvider_dump(): array
     {
         return [
             // boolean
@@ -29,10 +30,8 @@ class VariableDumperTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dataProvider_dump
-     */
-    public function test_dump($input, $expectedOutput): void
+    #[DataProvider('dataProvider_dump')]
+    public function test_dump($input, string $expectedOutput): void
     {
         self::assertSame(
             $expectedOutput,

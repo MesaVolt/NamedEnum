@@ -1,8 +1,7 @@
-# Named enum for PHP 7.1 +
+# Named enum for PHP 8.5+
 
 [![Latest Stable Version](https://poser.pugx.org/mesavolt/named-enum/v/stable)](https://packagist.org/packages/mesavolt/named-enum)
 [![Build Status](https://travis-ci.org/MesaVolt/NamedEnum.svg)](https://travis-ci.org/MesaVolt/NamedEnum)
-[![Coverage Status](https://coveralls.io/repos/github/MesaVolt/NamedEnum/badge.svg)](https://coveralls.io/github/MesaVolt/NamedEnum)
 [![License](https://poser.pugx.org/mesavolt/named-enum/license)](https://packagist.org/packages/mesavolt/named-enum)
 
 ## Usage
@@ -75,7 +74,7 @@ you need to apply the tags manually when you register the extension as a service
 
 ```yaml
 # Symfony 3: app/config/services.yml
-# Symfony 4: config/services.yaml
+# Symfony 4+: config/services.yaml
 services:
 
     # Use this if you use the default auto-configuring feature of Symfony >=3.3  DI container
@@ -92,21 +91,20 @@ Then, you can use the `enum_name` filter and the `enum_name` function provided b
 ```php
 <?php
 // src/Controller/HomeController.php
-// This is an example for Symfony 4.
-// The code is exactly the same for Symfony 3, only the file locations change.
 namespace App\Controller;
 
 
-use App\Enum;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\MyEnum;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 
-class HomeController extends Controller
+class HomeController extends AbstractController
 {
-    public function index()
+    public function index(): Response
     {
         return $this->render('my-template.html.twig', [
-            'value1' => Enum::FOO,
-            'value2' => Enum::BAR
+            'value1' => MyEnum::FOO,
+            'value2' => MyEnum::BAR
         ]);
     }
 }
@@ -119,7 +117,7 @@ You selected "{{ value1|enum_name('\\App\\MyEnum') }}"
 {# You selected "Foo name" #}
 
 
-You selected {"{ enum_name(value2, '\\App\\MyEnum') }}"
+You selected "{{ enum_name(value2, '\\App\\MyEnum') }}"
 {# You selected "Bar name" #}
 
 ```
@@ -129,5 +127,5 @@ You selected {"{ enum_name(value2, '\\App\\MyEnum') }}"
 
 ```bash
 composer dump-autoload # make sure vendor/autoload.php exists
-./vendor/bin/phpunit
+composer test
 ```

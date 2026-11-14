@@ -14,10 +14,10 @@ class StrictNamedEnumTest extends TestCase
         self::assertEquals('FOO NAME', StrictTestEnum::getName(StrictTestEnum::FOO));
     }
 
-    public function testThrowsExeptionForNonExistingValue(): void
+    public function testThrowsExceptionForNonExistingValue(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Undefined value "foo" for enum Mesavolt\Tests\Fixture\StrictTestEnum');
+        $this->expectExceptionMessageIsOrContains('Undefined value "foo" for enum Mesavolt\Tests\Fixture\StrictTestEnum');
         StrictTestEnum::getName('foo');
     }
 }

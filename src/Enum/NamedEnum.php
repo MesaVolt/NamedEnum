@@ -11,7 +11,7 @@ use Mesavolt\Helper\VariableDumper;
  */
 abstract class NamedEnum
 {
-    protected static $VALUE_NAMES = [];
+    protected static array $VALUE_NAMES = [];
 
     /**
      * Get all the values, indexed by their constant name as defined in the class.

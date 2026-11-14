@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Mesavolt\Tests\Enum;
 
 
-use Mesavolt\Tests\Fixture\IncompleteNamedEnum;
 use PHPUnit\Framework\TestCase;
 use Mesavolt\Tests\Fixture\TestEnum;
 

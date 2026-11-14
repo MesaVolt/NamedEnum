@@ -6,20 +6,11 @@ abstract class VariableDumper
 {
     public static function dump($variable): string
     {
-        switch ($type = \gettype($variable)) {
-            case 'NULL':
-            case 'boolean':
-            case 'integer':
-            case 'double':
-                return json_encode($variable);
-            case 'string':
-                return mb_substr($variable, 0, 100);
-            case 'object':
-                return \get_class($variable);
-            case 'array':
-            case 'resource':
-            default:
-                return $type;
-        }
+        return match ($type = \gettype($variable)) {
+            'NULL', 'boolean', 'integer', 'double' => json_encode($variable),
+            'string' => mb_substr($variable, 0, 100),
+            'object' => $variable::class,
+            default => $type,
+        };
     }
 }
