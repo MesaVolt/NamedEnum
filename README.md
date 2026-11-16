@@ -1,11 +1,11 @@
-# Named enum for PHP 8.5+
+# Named enum for PHP 8.4+
 
 [![Latest Stable Version](https://poser.pugx.org/mesavolt/named-enum/v/stable)](https://packagist.org/packages/mesavolt/named-enum)
 [![License](https://poser.pugx.org/mesavolt/named-enum/license)](https://packagist.org/packages/mesavolt/named-enum)
 
 ## Installation
 
-Requires PHP 8.5 or newer.
+Requires PHP 8.4 or newer.
 
 ```bash
 composer require mesavolt/named-enum

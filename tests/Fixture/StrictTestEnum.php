@@ -11,7 +11,6 @@ abstract class StrictTestEnum extends StrictNamedEnum
 {
     public const string FOO = 'bar';
 
-    #[\Override]
     protected static array $VALUE_NAMES = [
         self::FOO => 'FOO NAME'
     ];

@@ -13,7 +13,6 @@ abstract class IncompleteNamedEnum extends NamedEnum
     public const int VALUE_2 = 2;
     public const int VALUE_3 = 3;
 
-    #[\Override]
     protected static array $VALUE_NAMES = [
         self::VALUE_1 => 'This is 1',
     ];

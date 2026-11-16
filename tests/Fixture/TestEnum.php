@@ -13,7 +13,6 @@ abstract class TestEnum extends NamedEnum
     public const int VALUE_2      = 2;
     public const string VALUE_STRING = 'string';
 
-    #[\Override]
     protected static array $VALUE_NAMES = [
         self::VALUE_1 => 'NAME 1',
         self::VALUE_2 => 'NAME 2',
