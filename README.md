@@ -248,6 +248,38 @@ class Article
 }
 ```
 
+## Symfony forms
+
+This package provides the `NamedEnumType` field type to allow the users to choose one or more options defined in a
+named enum. It extends Symfony's `EnumType` and works with both native enums and legacy constant-based classes.
+
+```php
+use Mesavolt\Symfony\Form\NamedEnumType;
+
+$builder->add('status', NamedEnumType::class, [
+    'class' => ArticleStatus::class,
+    // you can pass alternative names if necessary
+    // 'alternative_names' => [
+    //     ArticleStatus::Pending->value => 'Not published',
+    //     ArticleStatus::Published->value => 'Published',
+    // ],
+]);
+```
+
+If you need to only expose some values, you can use `ChoicesHelper::only()` and `ChoicesHelper::except()` to filter
+the choices:
+
+```php
+use Mesavolt\Enum\ChoicesHelper;
+
+$choices = ChoicesHelper::only([ArticleStatus::Pending]);
+$choices = ChoicesHelper::except([ArticleStatus::Pending]);
+
+// you must explicitly specify the complete choices list for legacy constant-bases classes
+$choices = ChoicesHelper::only([MyEnum::FOO], MyEnum::choices());
+$choices = ChoicesHelper::except([MyEnum::BAR], MyEnum::choices());
+```
+
 ## Development
 
 ```bash
