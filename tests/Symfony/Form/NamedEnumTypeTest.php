@@ -126,8 +126,8 @@ class NamedEnumTypeTest extends TypeTestCase
 
         $view = $form->createView();
 
-        self::assertSame(['String first', 'Integer last'], array_column($view->vars['choices'], 'label'));
-        self::assertSame(['string', '1'], array_column($view->vars['choices'], 'value'));
+        self::assertSame(['String first', 'Integer last', 'NAME 2'], array_column($view->vars['choices'], 'label'));
+        self::assertSame(['string', '1', '2'], array_column($view->vars['choices'], 'value'));
 
         $form->submit('string');
 

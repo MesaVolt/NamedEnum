@@ -24,12 +24,28 @@ abstract class NamedEnum
         return $itemClass->getConstants();
     }
 
+
+    private static function getNamesFromAttributes(): array
+    {
+        $names = [];
+        $itemClass = new \ReflectionClass(static::class);
+        foreach ($itemClass->getReflectionConstants(\ReflectionClassConstant::IS_PUBLIC) as $constant) {
+            /** @var ?Name $nameAttribute */
+            $nameAttribute = array_first($constant->getAttributes(Name::class))?->newInstance();
+            $names[$constant->getValue()] = $nameAttribute?->value ?? $constant->getName();
+        }
+
+        return $names;
+    }
+
     /**
      * Get all the names, indexed by their value.
      */
     public static function getNames(?array $alternativeNames = null): array
     {
-        return $alternativeNames ?: static::$VALUE_NAMES;
+        $valueNames = static::$VALUE_NAMES;
+        $names = count($valueNames) === 0 ? self::getNamesFromAttributes() : $valueNames;
+        return ($alternativeNames ?? []) + $names;
     }
 
     /**
@@ -37,7 +53,7 @@ abstract class NamedEnum
      */
     public static function getName($value, ?array $alternativeNames = null): ?string
     {
-        return ($alternativeNames ?: static::$VALUE_NAMES)[$value] ?? null;
+        return self::getNames($alternativeNames)[$value] ?? null;
     }
 
     /**
@@ -53,7 +69,7 @@ abstract class NamedEnum
      */
     public static function names(?array $alternativeNames = null): array
     {
-        return array_values($alternativeNames ?: static::$VALUE_NAMES);
+        return array_values(self::getNames($alternativeNames));
     }
 
     /**
@@ -62,7 +78,12 @@ abstract class NamedEnum
      */
     public static function choices(?array $alternativeNames = null): array
     {
-        return array_flip($alternativeNames ?: static::$VALUE_NAMES);
+        $choices = [];
+        foreach (self::getNames($alternativeNames) as $value => $name) {
+            $choices[$name] = $value;
+        }
+
+        return $choices;
     }
 
     /**
@@ -71,7 +92,7 @@ abstract class NamedEnum
     public static function arrays(?array $alternativeNames = null): array
     {
         $array = [];
-        foreach(($alternativeNames ?: static::$VALUE_NAMES) as $value => $name) {
+        foreach(self::getNames($alternativeNames) as $value => $name) {
             $array[] = ['name' => $name, 'value' => $value];
         }
 

@@ -9,7 +9,9 @@
          stopOnIncomplete="false"
          stopOnSkipped="false"
          stopOnRisky="false"
-         cacheDirectory=".phpunit.cache">
+         cacheDirectory=".phpunit.cache"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+>
   <testsuites>
     <testsuite name="Project Test Suite">
       <directory>tests/</directory>

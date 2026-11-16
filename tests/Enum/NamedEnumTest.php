@@ -5,8 +5,9 @@ namespace Mesavolt\Tests\Enum;
 
 
 use PHPUnit\Framework\Attributes\DataProvider;
-use Mesavolt\Tests\Fixture\IncompleteNamedEnum;
 use PHPUnit\Framework\TestCase;
+use Mesavolt\Tests\Fixture\AttributeNamedEnum;
+use Mesavolt\Tests\Fixture\IncompleteNamedEnum;
 use Mesavolt\Tests\Fixture\TestEnum;
 
 final class NamedEnumTest extends TestCase
@@ -152,5 +153,12 @@ final class NamedEnumTest extends TestCase
     {
         $values = IncompleteNamedEnum::values();
         self::assertCount(3, $values);
+    }
+
+    public function testNameWorksWithAttributes(): void
+    {
+        self::assertSame('Name 1', AttributeNamedEnum::getName(AttributeNamedEnum::VALUE_1));
+        self::assertSame('Name 2', AttributeNamedEnum::getName(AttributeNamedEnum::VALUE_2));
+        self::assertSame('VALUE_3', AttributeNamedEnum::getName(AttributeNamedEnum::VALUE_3));
     }
 }

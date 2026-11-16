@@ -11,7 +11,7 @@ abstract class StrictNamedEnum extends NamedEnum
      */
     public static function getName($value, ?array $alternativeNames = null): string
     {
-        if (!array_key_exists($value, ($alternativeNames ?: static::$VALUE_NAMES))) {
+        if (!array_key_exists($value, self::getNames($alternativeNames))) {
             $class = static::class;
             throw new \InvalidArgumentException("Undefined value \"$value\" for enum $class");
         }

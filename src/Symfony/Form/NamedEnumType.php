@@ -44,6 +44,7 @@ class NamedEnumType extends AbstractType
         $resolver->setDefault('choice_label', static function (Options $options): \Closure {
             /** @var class-string<NamedEnumInterface|NamedEnum> $class */
             $class = $options['class'];
+            $choices = $options['choices'];
             $alternativeNames = $options['alternative_names'];
 
             return static function (NamedEnumInterface|int|string $choice, int|string $key) use ($class, $alternativeNames): string|TranslatableInterface {
