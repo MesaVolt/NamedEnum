@@ -1,0 +1,3 @@
+{%- for item in class|enum_arrays(alternative_names) -%}
+    [{{ item.name }} => {{ item.value }}]
+{%- endfor -%}

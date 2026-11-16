@@ -27,8 +27,12 @@
         "ext-json": "*"
     },
     "require-dev": {
+        "ext-pdo_sqlite": "*",
+        "doctrine/orm": "^2.20 || ^3.7",
         "phpunit/phpunit": "^13.4.7",
         "rector/rector": "^2.8",
+        "symfony/cache": "^8.1",
+        "symfony/translation-contracts": "^3.8",
         "twig/twig": "^3.21"
     },
     "scripts": {

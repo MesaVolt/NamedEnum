@@ -19,7 +19,7 @@ class NamedEnumExtensionAlternativeNamesTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->twig = new Environment(new FilesystemLoader(__DIR__));
+        $this->twig = new Environment(new FilesystemLoader(__DIR__ . '/legacy'));
         $this->twig->addExtension(new AttributeExtension(NamedEnumExtension::class));
     }
 

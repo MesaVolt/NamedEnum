@@ -1,0 +1,3 @@
+{%- for name, case in class|enum_choices(alternative_names) -%}
+    {{ name }}:{{ case.value }}|
+{%- endfor -%}
